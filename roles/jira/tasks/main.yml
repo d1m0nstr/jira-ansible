@@ -1,0 +1,22 @@
+---
+# tasks file for jira
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  become: yes
+
+- name: Install docker
+  apt: name={{ item }} state=present
+  become: yes
+  with_items:
+    - docker
+    - docker-compose
+    - docker.io
+    - bpytop
+- name: Copy docker-compose
+  copy:
+      src: /ansible/roles/jira/files/docker-compose.yml
+      dest: /
+
+- name: Execute docker-compose tasks
+  shell: docker-compose up -d
+

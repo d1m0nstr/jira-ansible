@@ -1,0 +1,16 @@
+- name: Debian | Install packages
+  apt:
+    name: "{{ query( 'flattened', [ '{{ php_fpm_install_packages }}', '{{ php_fpm_install_packages_deb }}', '{{ php_fpm_install_packages_group }}', '{{ php_fpm_install_packages_group_deb }}', '{{ php_fpm_install_packages_host }}', '{{ php_fpm_install_packages_host_deb }}' ] ) }}"
+    state: "{{ php_fpm_package_state }}"
+    # update_cache: yes
+  when:
+    ansible_os_family == "Debian"
+  tags: [ "php-fpm", "packages" ]
+
+- name: Debian | Remove packages
+  apt:
+    name: "{{ query( 'flattened', [ '{{ php_fpm_remove_packages }}', '{{ php_fpm_remove_packages_deb }}', '{{ php_fpm_remove_packages_group }}', '{{ php_fpm_remove_packages_group_deb }}', '{{ php_fpm_remove_packages_host }}', '{{ php_fpm_remove_packages_host_deb }}' ] ) }}"
+    state: absent
+  when:
+    ansible_os_family == "Debian"
+  tags: [ "php-fpm", "packages" ]

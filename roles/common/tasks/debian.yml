@@ -1,0 +1,4 @@
+- name: Install vim
+  apt: # для разных семейств ОС есть свои менеджеры пакетов, для Debian это apt
+    name: "vim"
+    state: present

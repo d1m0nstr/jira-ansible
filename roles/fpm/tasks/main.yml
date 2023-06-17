@@ -1,0 +1,23 @@
+---
+# tasks file for fpm
+- name: Install docker
+  apt:
+    name: docker.io
+    state: latest
+    update_cache: true
+
+- name: Install required system packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+    state: latest
+    update_cache: true
+
+- name: fpm_php_docker
+  script: script.sh

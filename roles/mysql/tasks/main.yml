@@ -1,0 +1,12 @@
+---
+# tasks file for mysql
+# tasks file for nginx
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  become: yes
+
+- name: Install mysql
+  apt: name={{ item }} state=latest
+  become: yes
+  with_items:
+    - mysql-server

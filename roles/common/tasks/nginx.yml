@@ -1,0 +1,4 @@
+- name: install nginx
+  apt: # для разных семейств ОС есть свои менеджеры пакетов, для Debian это apt
+    name: "nginx"
+    state: present
