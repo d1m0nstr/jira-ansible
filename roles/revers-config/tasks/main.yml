@@ -1,0 +1,19 @@
+---
+# tasks file for revers-config
+- name: hosts
+  shell: echo "192.168.1.8 jira.example.com" > /etc/hosts
+- name: Copy docker-compose jira
+  copy:
+      src: /ansible/jira-ansible/roles/revers-config/files/docker-compose.yml
+      dest: /
+
+- name: docker
+  shell: docker-compose up -d
+
+- name: Copy docker-compose site
+  copy:
+      src: /jira-ansible/roles/revers-config/files/jira/docker-compose.yml
+      dest: /
+
+- name: docker
+  shell: docker-compose up -d
