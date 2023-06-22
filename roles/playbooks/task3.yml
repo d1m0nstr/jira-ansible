@@ -1,6 +1,6 @@
 - hosts: all
   roles:
-    - { role: nginx, tags: [nginx]}
+#    - { role: nginx, tags: [nginx]}
     - { role: worldpress, tags: [worldpress]}
     - { role: mysql, tags: [mysql]} 
     - { role: fpm, tags: [php]}

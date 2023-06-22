@@ -12,11 +12,28 @@
     - docker-compose
     - docker.io
     - bpytop
-- name: Copy docker-compose
+
+- name: Copy docker-compose jira
   copy:
-      src: /ansible/roles/jira/files/docker-compose.yml
+      src: /ansible/jira-ansible/roles/jira/files/docker-compose.yml
       dest: /
 
 - name: Execute docker-compose tasks
+  shell: docker-compose up -d
+
+- name: Copy docker-compose conf
+  copy:
+      src: /ansible/jira-ansible/roles/jira/files/conf/docker-compose.yml
+      dest: /
+
+- name: Execute docker-compose tasks
+  shell: docker-compose up -d
+
+- name: Copy docker-compose conf
+  copy:
+      src: /ansible/jira-ansible/roles/jira/files/proxy/docker-compose.yml
+      dest: /
+
+- name: nginx docker
   shell: docker-compose up -d
 
